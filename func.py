@@ -32,6 +32,7 @@ import io
 import json
 import logging
 import requests
+import traceback
 
 from fdk import response
 
@@ -48,10 +49,8 @@ def handler(ctx, data: io.BytesIO=None):
 
         for item in logs: 
 
-            logging.getLogger().info("item: {}".format(item))
-
             # Pull postback field values from log event
-            log_data = item['logContent']['data']
+            log_data = item['data']
 
             # For custom headers, gather them (if present) and loop through to add to request parameters
             #headers = log_data['headers']  # gives a dictionary of (header_name -> value) pairs
