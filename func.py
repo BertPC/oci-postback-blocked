@@ -35,8 +35,8 @@ import requests
 
 from fdk import response
 
-bounce_postback_url_with_params = "https://ascentwebs.com/dyn-http-handler.php?type=s&e={email}&dc={diagnostic}&message={message}"
-bounce_postback_url_no_params = "https://ascentwebs.com/dyn-http-handler.php"
+postback_url_with_params = "https://ascentwebs.com/dyn-http-handler.php?type=s&e={email}&dc={diagnostic}&message={message}"
+postback_url_no_params = "https://ascentwebs.com/dyn-http-handler.php"
 
 def handler(ctx, data: io.BytesIO=None):
 
@@ -63,7 +63,10 @@ def handler(ctx, data: io.BytesIO=None):
             }
 
             # Traditional URL querystring GET method, no request body
-            http_response = requests.get(bounce_postback_url_with_params.format(**params_values))
+            http_response = requests.get(postback_url_with_params.format(**params_values))
+            # POST method
+            #response = requests.get(postback_url_no_fields, params=params_values)
+
             logging.getLogger().info("Postback sent: {} Response: HTTP {} --- {}".format(http_response.url, http_response.status_code, http_response.text.replace('\n', '')))
        
     except (Exception, ValueError) as ex:
