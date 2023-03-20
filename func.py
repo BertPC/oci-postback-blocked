@@ -50,6 +50,8 @@ def handler(ctx, data: io.BytesIO=None):
 
         for item in logs: 
 
+            logging.getLogger().info("item: {}".format(item))
+
             # Pull postback field values from log event
             log_data = item['logContent']['data']
 
