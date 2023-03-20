@@ -40,9 +40,7 @@ postback_url_no_params = "https://ascentwebs.com/dyn-http-handler.php"
 
 def handler(ctx, data: io.BytesIO=None):
 
-    """
-    Main Function handler routine, takes 
-    """
+    logging.getLogger().info("in the handler...")
 
     # Input is one or more Log events; parse into JSON and loop through them
     try:
